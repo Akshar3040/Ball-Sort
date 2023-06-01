@@ -5,42 +5,48 @@ using UnityEngine;
 public class Tube : MonoBehaviour
 {
     public List<GameObject> balls = new List<GameObject>();
-    public Transform Topposition;    
+    public Transform Topposition;
+    
+   
+     
     public static Tube inst;
     public Transform[] pos;
-
+    
 
     private void Awake()
     {
-        inst = this;
+        inst = this;        
     }
 
+
+    
 
     private void OnMouseDown()
     {
-        OnAddball();
-        OnRemoveball();
+       if (TubeManager.inst.ball == null)
+        {
+            if (balls.Count > 0)
+            {
+                
+            }
+        }
     }
 
-
-
-    public void OnAddball()
+    public void movetotop()
     {
-       
-            Debug.Log("BAll Added");
 
-       
-           // balls.Add(balls[balls.Count - 1]);
-        
     }
+    
 
+    
 
-    public void OnRemoveball()
-    {
-       // Debug.Log("Ball Removed");
-       // balls.Remove(balls[balls.Count - 1]);
-    }
 
 
 }
+
+
+
+
+
+
 
