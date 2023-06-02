@@ -6,7 +6,7 @@ public class TubeManager : MonoBehaviour
 {
    public Ball ball;
 
-    public void OnBall(Ball  balls)
+    public void OnBall(Ball balls)
     {
         ball = balls;
     }
