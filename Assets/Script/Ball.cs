@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class Ball : MonoBehaviour
 {
-    
-   
-   
-    
+   public Ballcolortype ballcolortype = Ballcolortype.Nobe;
 
     
-
    
 
 
-   
+
+    public enum Ballcolortype
+    {
+         Nobe,
+         Red,
+         yellow,        
+       // Blue,
+       // Pink,
+    }
 }
 
