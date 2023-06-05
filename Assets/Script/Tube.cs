@@ -99,6 +99,23 @@ public class Tube : MonoBehaviour
         StopCoroutine(moveBallIn());
          balls.Add(TubeManager.inst.ball);
          TubeManager.inst.ball = null;
-        
+        CheckSortingCompletion();
+
+    }
+
+    private void CheckSortingCompletion()
+    {
+        if (balls.Count >= pos.Length)
+        {
+            bool isSorted = true;
+            Ball.Ballcolortype prevColor = balls[balls.Count-1].ballcolortype;
+            
+
+            if (isSorted)
+            {
+                Debug.Log("Ball Sorting Completed!");
+                // Add your completion logic here
+            }
+        }
     }
 }
