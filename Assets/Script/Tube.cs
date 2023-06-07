@@ -5,11 +5,12 @@ using UnityEngine;
 public class Tube : MonoBehaviour
 {
     public List<Ball> balls = new List<Ball>();
-    public Transform Topposition;   
+    public Transform Topposition;
     public Transform[] pos;
     [SerializeField] private float moveDurationInSeconds = 1f;
-   
-   
+    private bool isSortingCompleted = false;
+
+
 
 
     private void OnMouseDown()
@@ -41,11 +42,14 @@ public class Tube : MonoBehaviour
                 StartCoroutine(moveBallIn());
             }
 
-        }       
+        }
+
+        CheckSortingCompletion();
+
 
     }
 
-    public   IEnumerator MovetoTopwithLerp()
+    public IEnumerator MovetoTopwithLerp()
     {
         var passedTime = 0f;
         int ballindex = balls.Count - 1;
@@ -54,19 +58,20 @@ public class Tube : MonoBehaviour
         {
             var lerpFactor = passedTime / moveDurationInSeconds;
             var smoothedLerpFactor = Mathf.SmoothStep(0, 1, lerpFactor);
-            
+
             balls[ballindex].transform.position = Vector2.Lerp(balls[ballindex].transform.position, Topposition.position, smoothedLerpFactor);
             passedTime += Mathf.Min(moveDurationInSeconds - passedTime, Time.deltaTime);
             yield return null;
-           
+
         }
-           
-            TubeManager.inst.ball = balls[ballindex];
-            balls.Remove(balls[ballindex]);
 
-    } 
+        TubeManager.inst.ball = balls[ballindex];
+        balls.Remove(balls[ballindex]);
+        CheckSortingCompletion();
 
-   
+    }
+
+
     public IEnumerator moveBallIn()
     {
         var passedTime = 0f;
@@ -78,7 +83,7 @@ public class Tube : MonoBehaviour
             TubeManager.inst.ball.transform.position = Vector2.Lerp(TubeManager.inst.ball.transform.position, Topposition.position, smoothedLerpFactor);
             passedTime += Mathf.Min(moveDurationInSeconds - passedTime, Time.deltaTime);
             yield return null;
-           
+
 
         }
 
@@ -87,34 +92,52 @@ public class Tube : MonoBehaviour
         while (passedTime < moveDurationInSeconds)
         {
             var lerpFactor = passedTime / moveDurationInSeconds;
-             var smoothedLerpFactor = Mathf.SmoothStep(0, 1, lerpFactor);            
-          
+            var smoothedLerpFactor = Mathf.SmoothStep(0, 1, lerpFactor);
+
             TubeManager.inst.ball.transform.position = Vector2.Lerp(TubeManager.inst.ball.transform.position, pos[balls.Count].position, smoothedLerpFactor);
             passedTime += Mathf.Min(moveDurationInSeconds - passedTime, Time.deltaTime);
             yield return null;
-           
-   
+
+
         }
-   
-        StopCoroutine(moveBallIn());
-         balls.Add(TubeManager.inst.ball);
-         TubeManager.inst.ball = null;
+
+        
+        balls.Add(TubeManager.inst.ball);
+        TubeManager.inst.ball = null;
+        //CheckSortingCompletion();
+        TubeManager.inst.CheckSortingCompletion();
         CheckSortingCompletion();
+
+
 
     }
 
+
+
+
     private void CheckSortingCompletion()
     {
-        if (balls.Count >= pos.Length)
+        if (!isSortingCompleted && balls.Count >= pos.Length)
         {
             bool isSorted = true;
-            Ball.Ballcolortype prevColor = balls[balls.Count-1].ballcolortype;
-            
+            Ball.Ballcolortype prevColor = balls[0].ballcolortype;
+
+            for (int i = 1; i < balls.Count; i++)
+            {
+                if (balls[i].ballcolortype != prevColor)
+                {
+                    isSorted = false;
+                    break;
+                }
+
+                prevColor = balls[i].ballcolortype;
+            }
 
             if (isSorted)
             {
+                isSortingCompleted = true;
                 Debug.Log("Ball Sorting Completed!");
-                // Add your completion logic here
+                // Display win message or perform any other actions
             }
         }
     }
