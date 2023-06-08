@@ -8,12 +8,10 @@ public class Tube : MonoBehaviour
     public Transform Topposition;
     public Transform[] pos;
     [SerializeField] private float moveDurationInSeconds = 1f;
-    private bool isSortingCompleted = false;
+    public  bool isSortingCompleted = false;
 
 
-
-
-    private void OnMouseDown()
+    public void OnMouseDown()
     {
         if (TubeManager.inst.ball == null)
         {
@@ -43,10 +41,7 @@ public class Tube : MonoBehaviour
             }
 
         }
-
-        CheckSortingCompletion();
-
-
+       
     }
 
     public IEnumerator MovetoTopwithLerp()
@@ -58,7 +53,6 @@ public class Tube : MonoBehaviour
         {
             var lerpFactor = passedTime / moveDurationInSeconds;
             var smoothedLerpFactor = Mathf.SmoothStep(0, 1, lerpFactor);
-
             balls[ballindex].transform.position = Vector2.Lerp(balls[ballindex].transform.position, Topposition.position, smoothedLerpFactor);
             passedTime += Mathf.Min(moveDurationInSeconds - passedTime, Time.deltaTime);
             yield return null;
@@ -67,7 +61,8 @@ public class Tube : MonoBehaviour
 
         TubeManager.inst.ball = balls[ballindex];
         balls.Remove(balls[ballindex]);
-        CheckSortingCompletion();
+        
+
 
     }
 
@@ -93,7 +88,6 @@ public class Tube : MonoBehaviour
         {
             var lerpFactor = passedTime / moveDurationInSeconds;
             var smoothedLerpFactor = Mathf.SmoothStep(0, 1, lerpFactor);
-
             TubeManager.inst.ball.transform.position = Vector2.Lerp(TubeManager.inst.ball.transform.position, pos[balls.Count].position, smoothedLerpFactor);
             passedTime += Mathf.Min(moveDurationInSeconds - passedTime, Time.deltaTime);
             yield return null;
@@ -104,31 +98,28 @@ public class Tube : MonoBehaviour
         
         balls.Add(TubeManager.inst.ball);
         TubeManager.inst.ball = null;
-        //CheckSortingCompletion();
-        TubeManager.inst.CheckSortingCompletion();
         CheckSortingCompletion();
-
-
-
+        
+      
     }
 
-
-
-
-    private void CheckSortingCompletion()
+    public void CheckSortingCompletion()
     {
         if (!isSortingCompleted && balls.Count >= pos.Length)
         {
-            bool isSorted = true;
-            Ball.Ballcolortype prevColor = balls[0].ballcolortype;
+             bool isSorted = true;
+           
+             Ball.Ballcolortype prevColor = balls[0].ballcolortype;
 
             for (int i = 1; i < balls.Count; i++)
             {
+
                 if (balls[i].ballcolortype != prevColor)
                 {
                     isSorted = false;
                     break;
                 }
+               
 
                 prevColor = balls[i].ballcolortype;
             }
@@ -136,9 +127,12 @@ public class Tube : MonoBehaviour
             if (isSorted)
             {
                 isSortingCompleted = true;
-                Debug.Log("Ball Sorting Completed!");
-                // Display win message or perform any other actions
-            }
+                
+                LeveWinManager.inst.TubeFiled();
+                           
+            }           
+            
         }
     }
-}
+
+ }
