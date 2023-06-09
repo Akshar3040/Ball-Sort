@@ -9,11 +9,12 @@ public class Tube : MonoBehaviour
     public Transform[] pos;
     [SerializeField] private float moveDurationInSeconds = 1f;
     public  bool isSortingCompleted = false;
+    [SerializeField] private Level level;
 
 
     public void OnMouseDown()
     {
-        if (TubeManager.inst.ball == null)
+        if (level.ball == null)
         {
             if (balls.Count > 0)
 
@@ -30,7 +31,7 @@ public class Tube : MonoBehaviour
         {
             if (balls.Count > 0)
             {
-                if (balls[balls.Count - 1].ballcolortype == TubeManager.inst.ball.ballcolortype)
+                if (balls[balls.Count - 1].ballcolortype == level.ball.ballcolortype)
                 {
                     StartCoroutine(moveBallIn());
                 }
@@ -59,7 +60,7 @@ public class Tube : MonoBehaviour
 
         }
 
-        TubeManager.inst.ball = balls[ballindex];
+        level.ball = balls[ballindex];
         balls.Remove(balls[ballindex]);
         
 
@@ -75,7 +76,7 @@ public class Tube : MonoBehaviour
         {
             var lerpFactor = passedTime / moveDurationInSeconds;
             var smoothedLerpFactor = Mathf.SmoothStep(0, 1, lerpFactor);
-            TubeManager.inst.ball.transform.position = Vector2.Lerp(TubeManager.inst.ball.transform.position, Topposition.position, smoothedLerpFactor);
+            level.ball.transform.position = Vector2.Lerp(level.ball.transform.position, Topposition.position, smoothedLerpFactor);
             passedTime += Mathf.Min(moveDurationInSeconds - passedTime, Time.deltaTime);
             yield return null;
 
@@ -88,7 +89,7 @@ public class Tube : MonoBehaviour
         {
             var lerpFactor = passedTime / moveDurationInSeconds;
             var smoothedLerpFactor = Mathf.SmoothStep(0, 1, lerpFactor);
-            TubeManager.inst.ball.transform.position = Vector2.Lerp(TubeManager.inst.ball.transform.position, pos[balls.Count].position, smoothedLerpFactor);
+            level.ball.transform.position = Vector2.Lerp(level.ball.transform.position, pos[balls.Count].position, smoothedLerpFactor);
             passedTime += Mathf.Min(moveDurationInSeconds - passedTime, Time.deltaTime);
             yield return null;
 
@@ -96,8 +97,8 @@ public class Tube : MonoBehaviour
         }
 
         
-        balls.Add(TubeManager.inst.ball);
-        TubeManager.inst.ball = null;
+        balls.Add(level.ball);
+        level.ball = null;
         CheckSortingCompletion();
         
       
@@ -128,7 +129,7 @@ public class Tube : MonoBehaviour
             {
                 isSortingCompleted = true;
                 
-                LeveWinManager.inst.TubeFiled();
+                level.TubeFiled();
                            
             }           
             

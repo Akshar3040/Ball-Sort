@@ -16,8 +16,9 @@ public class Ball : MonoBehaviour
          Nobe,
          Red,
          yellow,        
-       // Blue,
-       // Pink,
+         Blue,
+         Pink,
+         Brown,
     }
 }
 

@@ -2,26 +2,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIManager : UIBaseClass
+public class UIManager : MonoBehaviour
 {
-    public List<UIBaseClass> UiScreenList;
-    UIBaseClass currentscreen;
-
     public static UIManager inst;
+    private ScreenType InitialScreen;
+    public Screens CurrentScreen;
+    public List<ScreenClass> CurrentClass = new List<ScreenClass>();
+
 
     private void Awake()
     {
         inst = this;
-        currentscreen = UiScreenList[0];
-
     }
 
-    public void showNextScreen(UIScreenList uIScreen)
+    private void Start()
     {
-        currentscreen.OnDisable();
-        UiScreenList[(int)uIScreen].OnEnable();
-        currentscreen = UiScreenList[(int)uIScreen];
+        ChangeUI(InitialScreen);
+    }
+
+    public void ChangeUI(ScreenType screen)
+    {
+        if (CurrentScreen != null)
+        {
+            CurrentScreen.OnCanvasDissable();
+            CurrentScreen = null;
+        }
+        CurrentScreen = CurrentClass.Find(x => x.screenEnum == screen).screen;
+        CurrentScreen.OnCanvasEnable();
     }
 
 
+
+
+
+}
+
+[System.Serializable]
+public class ScreenClass
+{
+    public ScreenType screenEnum;
+    public Screens screen;
+}
+
+public enum ScreenType 
+{   
+    GamePlayScreen,
+    GameCompletionScreen,
 }

@@ -1,18 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class GamePlayScreen : MonoBehaviour
+public class GamePlayScreen : Screens
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public Button LevelButton;
+    public Button ResetButton;
+
+
+    private void Start()
     {
-        
+        LevelButton.onClick.AddListener(OnLevel);
+        ResetButton.onClick.AddListener(OnReset);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnLevel()
     {
-        
+
+    }
+
+    public void OnReset()
+    {
+
     }
 }

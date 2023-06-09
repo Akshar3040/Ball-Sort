@@ -2,19 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LeveWinManager : MonoBehaviour
+public class Level : MonoBehaviour
 {
     public List<Tube> tubes = new List<Tube>();
-    public float counter=0;
+    public float counter = 0;
     public int TotalTubeCount;
     public int tubescompleted;
-    public static LeveWinManager inst;
-
-
-    private void Awake()
-    {
-        inst = this;
-    }
+    public Ball ball;
+    
 
     private void Start()
     {
@@ -22,6 +17,10 @@ public class LeveWinManager : MonoBehaviour
         tubescompleted = TotalTubeCount - 2;
     }
 
+    public void OnBall(Ball balls)
+    {
+        ball = balls;
+    }
 
     public void TubeFiled()
     {
@@ -30,10 +29,10 @@ public class LeveWinManager : MonoBehaviour
             if (tubes[i].isSortingCompleted == true)
             {
                 counter++;
-                
+
                 break;
             }
-            
+
         }
 
         if (counter >= tubescompleted)
