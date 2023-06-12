@@ -15,10 +15,16 @@ public class LevelManager : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        LoadLevel(1);
+    }
+
 
     public void ChangeLevel()
     {
-        if(leveldata.currentLevel != leveldata.levels.Count)
+        leveldata.IncreaseCurrentLevel();
+        if (leveldata.currentLevel != leveldata.levels.Count)
         {
             CurrentLevelData = Instantiate(leveldata.levels[leveldata.currentLevel], Generatedlevel).gameObject;
         }
@@ -27,6 +33,21 @@ public class LevelManager : MonoBehaviour
             CurrentLevelData = Instantiate(leveldata.levels[leveldata.currentLevel % leveldata.levels.Count], Generatedlevel).gameObject;
         }
     }
-    
+
+    public void LoadLevel(int levelIndex)
+    {
+        leveldata.currentLevel = levelIndex - 1;
+        CurrentLevelData = Instantiate(leveldata.levels[leveldata.currentLevel], Generatedlevel).gameObject;
+        
+    }
+    public void RemoveLastLevel()
+    {
+        Destroy(CurrentLevelData);   
+    }
+   
+    public void OnReset()
+    {
+        CurrentLevelData = Instantiate(leveldata.levels[leveldata.currentLevel], Generatedlevel).gameObject;
+    }
 
 }

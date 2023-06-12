@@ -8,7 +8,7 @@ public class LevelData : ScriptableObject
     public List<Level> levels = new List<Level>();
     public int currentLevel;
 
-    public void ManageCurrentLevel()
+    public void IncreaseCurrentLevel()
     {
         currentLevel++;
     }

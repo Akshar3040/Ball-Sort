@@ -5,8 +5,8 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     public static UIManager inst;
-    private ScreenType InitialScreen;
-    public Screens CurrentScreen;
+    public ScreenType InitialScreen;
+    private Screens CurrentScreen;
     public List<ScreenClass> CurrentClass = new List<ScreenClass>();
 
 
@@ -29,11 +29,9 @@ public class UIManager : MonoBehaviour
         }
         CurrentScreen = CurrentClass.Find(x => x.screenEnum == screen).screen;
         CurrentScreen.OnCanvasEnable();
+       // Debug.Log("Ui Manager - ChangeUI");
+
     }
-
-
-
-
 
 }
 
@@ -47,5 +45,6 @@ public class ScreenClass
 public enum ScreenType 
 {   
     GamePlayScreen,
+    LevelMenuScreen,
     GameCompletionScreen,
 }

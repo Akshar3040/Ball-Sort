@@ -4,26 +4,28 @@ using UnityEngine;
 
 public class BaseUI : MonoBehaviour
 {
-    private Canvas canvas;
-    public bool IsActive;
-
-    private void Start()
-    {
-        canvas = GetComponent<Canvas>();
+     private Canvas canvas;
+     public bool IsActive;
+    
+     private void Start()
+     {
+         canvas = GetComponent<Canvas>();
+        
     }
 
-    public void OnCanvasEnable()
-    {
-        canvas.enabled = true;
-        IsActive = true;
-    }
+     public virtual void OnCanvasEnable()
+     {
+    
+         canvas.enabled = true;
+         IsActive = true;
+     }
+    
+     public virtual void OnCanvasDissable()
+     {
+         canvas.enabled = false;
+         IsActive = false;
+     }
+    
 
-    public void OnCanvasDissable()
-    {
-        canvas.enabled = false;
-        IsActive = false;
-    }
 
-
-   
 }

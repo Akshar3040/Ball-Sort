@@ -15,6 +15,7 @@ public class Level : MonoBehaviour
     {
         TotalTubeCount = tubes.Count;
         tubescompleted = TotalTubeCount - 2;
+        
     }
 
     public void OnBall(Ball balls)
@@ -37,7 +38,8 @@ public class Level : MonoBehaviour
 
         if (counter >= tubescompleted)
         {
-            print("You Win");
+            UIManager.inst.ChangeUI(ScreenType.GameCompletionScreen);
+            
 
         }
     }
