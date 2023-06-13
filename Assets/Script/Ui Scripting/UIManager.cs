@@ -29,8 +29,7 @@ public class UIManager : MonoBehaviour
         }
         CurrentScreen = CurrentClass.Find(x => x.screenEnum == screen).screen;
         CurrentScreen.OnCanvasEnable();
-       // Debug.Log("Ui Manager - ChangeUI");
-
+       
     }
 
 }

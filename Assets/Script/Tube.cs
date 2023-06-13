@@ -8,12 +8,15 @@ public class Tube : MonoBehaviour
     public Transform Topposition;
     public Transform[] pos;
     [SerializeField] private float moveDurationInSeconds = 1f;
-    public  bool isSortingCompleted = false;
+    public bool isSortingCompleted = false;
     [SerializeField] private Level level;
 
+    
 
     public void OnMouseDown()
     {
+        if (Input.touchCount > 0)
+        { 
         if (level.ball == null)
         {
             if (balls.Count > 0)
@@ -35,7 +38,7 @@ public class Tube : MonoBehaviour
                 {
                     StartCoroutine(moveBallIn());
                 }
-            }
+            }   
             else
             {
                 StartCoroutine(moveBallIn());
@@ -43,6 +46,7 @@ public class Tube : MonoBehaviour
 
         }
        
+    }
     }
 
     public IEnumerator MovetoTopwithLerp()
@@ -59,6 +63,7 @@ public class Tube : MonoBehaviour
             yield return null;
 
         }
+        AudioManager.inst.OnplaySound("Ball Out Sound");
 
         level.ball = balls[ballindex];
         balls.Remove(balls[ballindex]);
@@ -95,7 +100,7 @@ public class Tube : MonoBehaviour
 
 
         }
-
+        AudioManager.inst.OnplaySound("Ball In Sound");
         
         balls.Add(level.ball);
         level.ball = null;

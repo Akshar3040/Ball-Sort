@@ -8,6 +8,12 @@ public class AudioManager : MonoBehaviour
 
     public Sound[] playersoundsound;
     public AudioSource PlayersSoundSource;
+    public static AudioManager inst;
+
+    private void Awake()
+    {
+        inst = this;
+    }
 
     public void OnplaySound(string Name)
     {
@@ -18,7 +24,7 @@ public class AudioManager : MonoBehaviour
         }
         else
         {
-            PlayersSoundSource.PlayOneShot(s.AudioClip,1);
+            PlayersSoundSource.PlayOneShot(s.AudioClip, 1f);
             
         }
     }

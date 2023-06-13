@@ -9,13 +9,15 @@ public class BaseUI : MonoBehaviour
     
      private void Start()
      {
-         canvas = GetComponent<Canvas>();
-        
-    }
+         canvas = GetComponent<Canvas>();        
+     }
 
      public virtual void OnCanvasEnable()
-     {
-    
+    {
+        if (canvas == null)
+        {
+            canvas = GetComponent<Canvas>();
+        }
          canvas.enabled = true;
          IsActive = true;
      }

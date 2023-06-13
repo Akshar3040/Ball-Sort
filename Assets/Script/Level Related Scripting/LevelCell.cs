@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class LevelCell : MonoBehaviour
 {
-   private Button LevelButton;
-    public int index;
+    [SerializeField] private TextMeshProUGUI numberText;
+    [SerializeField] private Button LevelButton;
+    private int index;
 
-
-    public void OnCellEnable()
+    private void OnEnable()
     {
         LevelButton.onClick.AddListener(OnLevelButtonClicked);
     }
@@ -21,16 +22,21 @@ public class LevelCell : MonoBehaviour
 
     public void OnLevelButtonClicked()
     {
-        LevelManager.inst.LoadLevel(index);
+       LevelManager.inst.RemoveLastLevel();
+       UIManager.inst.ChangeUI(ScreenType.GamePlayScreen);
+       LevelManager.inst.LoadLevel(index);
+
     }
 
 
     public void SetData(int levelIndex)
     {
-        index = levelIndex;
+        index = levelIndex+1;
+        numberText.text = index.ToString();
+        
     }
 
-    public void OnCellDissable()
+    private void OnDisable()
     {
         LevelButton.onClick.RemoveListener(OnLevelButtonClicked);
     }
