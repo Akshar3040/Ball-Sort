@@ -15,7 +15,7 @@ public class Tube : MonoBehaviour
 
     public void OnMouseDown()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount > 0 || Input.GetMouseButtonDown(0))
         { 
         if (level.ball == null)
         {
@@ -23,6 +23,7 @@ public class Tube : MonoBehaviour
 
             {
                 StartCoroutine(MovetoTopwithLerp());
+
             }
             else
             {
@@ -47,7 +48,7 @@ public class Tube : MonoBehaviour
         }
        
     }
-    }
+    }   
 
     public IEnumerator MovetoTopwithLerp()
     {

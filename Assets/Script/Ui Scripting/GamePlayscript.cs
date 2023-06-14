@@ -18,7 +18,8 @@ public class GamePlayscript : Screens
     
     public void OnLevelMenu()
     {
-       UIManager.inst.ChangeUI(ScreenType.LevelMenuScreen);
+       
+        UIManager.inst.ChangeUI(ScreenType.LevelMenuScreen);
     }
 
     public void OnReset()

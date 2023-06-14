@@ -32,8 +32,7 @@ public class LevelCell : MonoBehaviour
     public void SetData(int levelIndex)
     {
         index = levelIndex+1;
-        numberText.text = index.ToString();
-        
+        numberText.text = index.ToString();        
     }
 
     private void OnDisable()

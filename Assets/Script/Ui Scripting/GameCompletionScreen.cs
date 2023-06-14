@@ -16,10 +16,13 @@ public class GameCompletionScreen :Screens
 
     public void OnNextButton()
     {
-       
+        
+        SaveAndLoadGame.inst.SaveData();
         LevelManager.inst.RemoveLastLevel();
         UIManager.inst.ChangeUI(ScreenType.GamePlayScreen);
         LevelManager.inst.ChangeLevel();
+        
+       
 
     }
 
