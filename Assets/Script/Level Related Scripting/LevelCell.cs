@@ -9,6 +9,7 @@ public class LevelCell : MonoBehaviour
     [SerializeField] private TextMeshProUGUI numberText;
     [SerializeField] private Button LevelButton;
     private int index;
+    
 
     private void OnEnable()
     {
@@ -31,8 +32,9 @@ public class LevelCell : MonoBehaviour
 
     public void SetData(int levelIndex)
     {
-        index = levelIndex+1;
-        numberText.text = index.ToString();        
+        index = levelIndex;
+        int levelvalue = index + 1;
+        numberText.text = levelvalue.ToString();        
     }
 
     private void OnDisable()

@@ -22,6 +22,7 @@ public class GameCompletionScreen :Screens
         UIManager.inst.ChangeUI(ScreenType.GamePlayScreen);
         LevelManager.inst.ChangeLevel();
         
+        
        
 
     }

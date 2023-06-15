@@ -6,7 +6,8 @@ using UnityEngine;
 public class LevelData : ScriptableObject
 {
     public List<Level> levels = new List<Level>();
-    public int currentLevel;
+    public int currentLevel = 0;
+
 
     public void IncreaseCurrentLevel()
     {
@@ -18,6 +19,6 @@ public class LevelData : ScriptableObject
         return currentLevel + 1;
     }
 
-
+   
 }
 

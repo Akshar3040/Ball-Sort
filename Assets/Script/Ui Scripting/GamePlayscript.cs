@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GamePlayscript : Screens
 {
     public Button LevelMenubtn;
     public Button Resetbtn;
+   
 
     public override void OnCanvasEnable()
     {
@@ -18,7 +20,6 @@ public class GamePlayscript : Screens
     
     public void OnLevelMenu()
     {
-       
         UIManager.inst.ChangeUI(ScreenType.LevelMenuScreen);
     }
 
