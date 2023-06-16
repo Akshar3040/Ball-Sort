@@ -847,7 +847,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953425289}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1446,7 +1446,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -500}
+  m_AnchoredPosition: {x: 0, y: -350}
   m_SizeDelta: {x: 250, y: 111}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1674827679
@@ -2025,6 +2025,8 @@ MonoBehaviour:
   IsActive: 0
   LevelMenubtn: {fileID: 745113610}
   Resetbtn: {fileID: 1609848339}
+  Levelindicator: {fileID: 1674827679}
+  level: {fileID: 11400000, guid: fa1d43dd88c3640b4a7c2116609c0fec, type: 2}
 --- !u!114 &2102673927
 MonoBehaviour:
   m_ObjectHideFlags: 0

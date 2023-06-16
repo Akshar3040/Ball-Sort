@@ -5,13 +5,17 @@ using UnityEngine;
 public class Level : MonoBehaviour
 {
     public List<Tube> tubes = new List<Tube>();
+
+    public int LevelIndicator;
     public float counter = 0;
     public int TotalTubeCount;
     public int tubescompleted;
     public Ball ball;
     
 
-    private void Start()
+    
+
+    private void Awake()
     {
         TotalTubeCount = tubes.Count;
         tubescompleted = TotalTubeCount - 2;
@@ -28,12 +32,12 @@ public class Level : MonoBehaviour
         for (int i = 0; i < TotalTubeCount; i++)
         {
             if (tubes[i].isSortingCompleted == true)
-            {
-                counter++;
-
+            {                
+                counter++;                
+               
                 break;
+               
             }
-
         }
 
         if (counter >= tubescompleted)

@@ -8,6 +8,9 @@ public class GamePlayscript : Screens
 {
     public Button LevelMenubtn;
     public Button Resetbtn;
+    public TMP_Text Levelindicator;
+    public LevelData level;
+    
    
 
     public override void OnCanvasEnable()
@@ -15,9 +18,13 @@ public class GamePlayscript : Screens
         base.OnCanvasEnable();
         LevelMenubtn.onClick.AddListener(OnLevelMenu);
         Resetbtn.onClick.AddListener(OnReset);
+        
     }
 
-    
+    private void Update()
+    {        
+        Levelindicator.text = level.GetCurrentLevel().ToString();
+    }
     public void OnLevelMenu()
     {
         UIManager.inst.ChangeUI(ScreenType.LevelMenuScreen);
@@ -36,6 +43,7 @@ public class GamePlayscript : Screens
         base.OnCanvasDissable();
         LevelMenubtn.onClick.RemoveListener(OnLevelMenu);
         Resetbtn.onClick.RemoveListener(OnReset);
+       
     }
 }
    

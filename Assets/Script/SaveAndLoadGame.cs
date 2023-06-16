@@ -22,10 +22,15 @@ public class SaveAndLoadGame : MonoBehaviour
         store.levelDataStorer = lastlevel.currentLevel;
         File.WriteAllText(Application.persistentDataPath + "/data.json", JsonUtility.ToJson(store));
     }
-   public void LoadData()
+
+  
+
+    public void LoadData()
    {
         if (File.Exists(Application.persistentDataPath + "/data.json"))
         {
+            
+
             store = JsonUtility.FromJson<Store>(File.ReadAllText(Application.persistentDataPath + "/data.Json"));
             if (store != null)
             {
