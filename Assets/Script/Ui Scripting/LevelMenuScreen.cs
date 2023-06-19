@@ -8,10 +8,6 @@ public class LevelMenuScreen : Screens
     public LevelData data;
     public Transform paranet;
     public LevelCell levelCellprefab;
-   
-    
-
-
     public List<LevelCell> LevelMenu = new List<LevelCell>();
 
     public override void OnCanvasEnable()

@@ -16,7 +16,11 @@ public class LevelData : ScriptableObject
 
     public int GetCurrentLevel()
     {
-        return currentLevel + 1;
+        if (currentLevel >=10)
+        {
+            currentLevel = 0;
+        }
+        return currentLevel +1;
     }
 
    

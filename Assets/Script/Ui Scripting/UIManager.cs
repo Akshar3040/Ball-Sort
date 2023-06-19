@@ -7,7 +7,8 @@ public class UIManager : MonoBehaviour
     public static UIManager inst;
     public ScreenType InitialScreen;
     private Screens CurrentScreen;
-    public List<ScreenClass> CurrentClass = new List<ScreenClass>();
+   
+   public List<ScreenClass> CurrentClass = new List<ScreenClass>();
 
 
     private void Awake()

@@ -5,12 +5,18 @@ using UnityEngine.UI;
 
 public class GameCompletionScreen :Screens
 {
-    public Button nextbtn; 
-    public override void OnCanvasEnable()
-    {
+    public Button nextbtn;
+    public List<ParticleSystem> particles = new List<ParticleSystem>();
         
+    public override void OnCanvasEnable()
+    {       
         base.OnCanvasEnable();
         nextbtn.onClick.AddListener(OnNextButton);
+
+        for (int i = 0; i<particles.Count; i++)
+        {
+            particles[i].Play();
+        }
        
     }
 
@@ -31,5 +37,10 @@ public class GameCompletionScreen :Screens
     {
         base.OnCanvasDissable();
         nextbtn.onClick.RemoveListener(OnNextButton);
+        for (int i = 0; i < particles.Count; i++)
+        {
+            particles[i].Stop();
+        }
+
     }
 }  
